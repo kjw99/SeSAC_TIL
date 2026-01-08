@@ -105,3 +105,50 @@
     - 주소를 origin에 저장. origin이 변수 같은 느낌.
     - 이후 이거를 git push -u origin main 으로 올림.
     - origin에 main을 올리겠다. origin에는 내가 쓴 주소가 있음!
+---
+## git 추가 설명
+- GIt
+    - git init - 디렉토리를 git 관리 시작
+    - 변경 사항 발생 → 저장
+        - git add
+        - git commit
+    - 위 작업까지는 로컬에서만 발생하는 일! (내 컴퓨터 에서만)
+- github
+    - 레포지토리 - git을 올리는 공간
+    - 로컬의 .git을 깃허브의 레포지토리에 올리자
+        - 로컬 명령 → url로 올려
+        - git remote add origin {url}
+            - 원격 저장소
+        - git push -u origin main
+            - main = 브랜치 명.
+            - 깃이 main을 origin에 올리겠다! 라는 뜻.
+            - -u는 기본적으로 origin에다 main을 올리겠다는 것을 알려주는 것. 이후엔 origin main을 생략해도 main에 올리게 된다.
+- git clone {주소} 레포지토리명
+    - 레포지토리명 따로 지정 안하면 기존꺼 사용
+    - 레포지토리명 겹치면 안댐
+- .gitignore
+    - api 키, 비밀번호 등 굳이 올릴 필요가 없거나 올려선 안되는 파일들을 push 되지 않도록 기록해두는 파일
+    - 블랙리스트 느낌
+    - .gitignore 파일명 똑같이 만들어서 제외할 파일 써두면 댐.
+    - .env 파일은 환경 변수나 비밀번호 등 민감한 정보를 써두는 곳. 이런 파일을 제외해두는 편.
+    - commit을 하면 파일을 관리하게 됨. 그래서 gitignore를 통해 제외하려면 commit 하기 전에 써둬야 한다. 그니까 그냥 add 전에 써두자.
+    - .git 폴더와 동일한 위치에 생성해야 함.
+    - https://www.toptal.com/developers/gitignore/
+    - 위 사이트에서 쓰는 언어나 환경에 따라 필요한 gitignore 생성해줌
+    - 최초의 커밋을 gitignore로 하면 좋음
+- 같은 git에서 서로 동시에 push하는 경우
+    - A와 B가 서로 다른 파일을 수정한 후 push 하는 경우 A는 push가 된다면, B는 push가 안됨.
+    - 이미 A의 파일을 통해 최신화 된 git 데이터가 있기 때문. B는 git pull을 통해 최신 데이터를 받고 자신의 기존 데이터와 merge를 통해 병합해서 새로운 commit을 한 후에 push하면 된다.
+        - B가 pull 할 때 vi 창이 뜨는데, 그냥 :wq 해주면 댐.
+    - 이후 B가 push하면 그게 최신 데이터가 되고, A가 다시 pull 하면 둘 다 동일한 버전을 갖게 됨.
+    - 이 상황은 서로 같은 버전에서 작업하고, 서로 다른 데이터를 작업한 경우임.
+    - 서로 같은 데이터를 작업한 경우 충돌이 일어나면서 자동 merge가 안됨. 사용자가 직접 해당 파일을 수정한 후 add commit 해야 함. 이게 merge 하는 과정이랑 같음
+    - 이후 push하면 끝.
+- git default editor를 vi -> vscode로 변경하는 방법
+
+```python
+git config --global core.editor "code --wait"
+```
+
+- git stash
+    - git pull이 안되는 경우 사용. 임시 저장. 이후 git pull 가능!
