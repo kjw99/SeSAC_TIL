@@ -36,8 +36,9 @@
     students = {"kyle": 10}
     
     # 조회
-    print(students["kyle"])
-    
+    print(students["kyle"]) # 키에 대한 값이 없으면 에러!
+    print(students.get("kyle")) # 키에 대한 값이 없으면 None. 두 번째 인자로 기본값 지정 가능.
+
     try:
         print(students["alex"]) # 존재하지 않는 키 조회 시 에러
     except KeyError as e:
@@ -154,3 +155,100 @@
         ```
         
     -
+## 딕셔너리 sum(), set 사용
+- python에는 sum() 함수가 있다..
+- 딕셔너리의 값들을 sum()에 넣으면 반복문 없이 한번에 합치기가 가능.
+- 그냥 for문으로 출력해도 되지만, format을 사용해서 출력하는 것도 가능. 변수명을 알아보기 쉽게 직관적으로 작성하자.
+
+```python
+scores = {
+    "Alice": 85,
+    "Bob": 92,
+    "Charlie": 78,
+    "David": 95,
+    "Eve": 88
+}
+
+for name in scores:
+    score = scores[name]
+    print(f"{name} : {score}")
+
+templates = "이름 : {name} / 점수 : {score}"
+
+for name in scores:
+    score = scores[name]
+    print(templates.format(name = name, score = score))
+```
+
+- set을 통해 교집합, 차집합, 합집합 등 사용해서 데이터 뽑기도 가능.
+
+```python
+# 코드를 여기에 작성하세요
+scores = {
+    "Alice": 85,
+    "Bob": 92,
+    "Charlie": 78,
+    "David": 95,
+    "Eve": 88
+}
+
+top_student = []
+
+for key in scores:
+    if scores[key] >= 90:
+        top_student.append(key)
+
+print(top_student)
+
+good_list = []
+for name, score in scores.items():
+    if score >= 90:
+        good_list.append(name)
+
+print(good_list)
+
+# 차집합을 통해 90점 미만인 사람들 출력
+print(set(scores.keys()) - set(good_list))
+```
+
+- pass의 기준인 80점이 변경될 수도 있음. 변수로 설정해서 관리하자.
+- pass와 fail 외에 다른 값을 추가하거나 변경할 수도 있음. 그렇기에 status 변수를 생성하고 해당 변수에 상태를 저장해두고 마지막에 변경하자.
+- 복잡한 코드일수록 이런 방식으로 코드를 더 친절하게 작성해야 좋음.
+
+```python
+# 코드를 여기에 작성하세요
+scores = {
+    "Alice": 85,
+    "Bob": 92,
+    "Charlie": 78,
+    "David": 95,
+    "Eve": 88
+}
+
+scores_pass_fail = {}
+good_score = 80
+
+for name in scores:
+    status = None
+
+    if scores[name] >= good_score:
+        status = 'Pass'
+    else:
+        status = 'Fail'
+    
+    scores_pass_fail[name] = status
+
+for name in scores_pass_fail:
+    value = scores_pass_fail[name]
+    print(f"{name} : {value}")
+
+```
+
+- 딕셔너리의 삽입은 얼핏 보면 배열에 삽입하는 것과 비슷해서 혼동이 올 수가 있음.
+- 배열의 경우엔 0번방, 1번방에 값을 넣는다. 라는 느낌이면, 딕셔너리의 경우 a번 방에 값을 넣는다. name값의 방에 status를 넣는다. 이런식으로 생각하자.
+- 아래의 경우 { name : status } 이런식으로 될 것.
+
+```python
+scores_pass_fail = {}
+scores_pass_fail[name] = status
+```
