@@ -589,3 +589,49 @@ class PostService:
         post.tags = new_tags 
         db.commit()
     ```
+# user - wishlist - product 실습
+
+## AssociationProxy 활용
+
+- user model에서 AssociationProxy 설정을 통해 중간의 wishlist 없이 바로 user → product 접근이 가능.
+    - 이러면 user.products 이런식으로 사용이 된다.
+    - product에서도 설정만 하면 반대로 product → user 접근이 가능.
+
+```sql
+# model / user 일부분
+class User(Base):
+    ...
+
+    products: AssociationProxy[list["Product"]] = association_proxy("wish_list", "product")
+```
+
+- user가 wishlist에 추가한 상품들의 정보와 추가한 날짜를 조회하기 위한 스키마 추가.
+- user를 조회하면, 연관된 products의 정보를 바로 조회하는 것이 가능.
+    - WishlistResponse는 user_id, product_id, create_at의 정보를 담는 스키마.
+    - AssociationProxy 를 활용해서 products에 user와 연관된 product를 전부 가져오게 된다.
+
+```sql
+# schemas / user 일부분
+class UserResponse(BaseModel):
+    id: int
+    nickname: str
+
+    model_config = ConfigDict(from_attributes=True)
+
+class UserWishlistResponse(UserResponse):
+    products: list[ProductResponse] = []
+    create_at: list[WishlistResponse] = []
+```
+
+- 서비스에서 user를 가져오면, product 부분은 이미 있으니까, create_at에 추가할 데이터를 조회해서 가져옴.
+
+```sql
+# service / user_service 일부분
+def read_user_wishlist(self, db: Session, user_id: int):
+        with db.begin():
+            user = self.read_user_by_id(db, user_id)
+            user.create_at = wishlist_repository.find_by_user(db, user_id)
+
+        db.refresh(user)
+        return user
+```
