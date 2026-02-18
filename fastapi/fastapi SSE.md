@@ -135,6 +135,8 @@ uv add openai
 ```
 
 - `.env` 파일에 API 키를 추가한다.
+- openai의 키는 sk ~ 로 시작.
+- 테스트 코드는 openai의 api를 활용한 일반 응답과 sse 응답의 차이를 확인하는 것.
 
 ```
 OPENAI_API_KEY=sk-여기에-본인-키-입력
