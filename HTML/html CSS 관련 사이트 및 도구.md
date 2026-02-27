@@ -221,3 +221,69 @@
 }
 
 ```
+
+## 생성형 AI UI 도구
+
+- 사용자가 자연어 또는 스케치 이미지로 원하는 UI를 설명하면, AI가 이를 해석하여 실제 작동하는 UI 디자인과 코드를 만들어주는 서비스
+- 디자인 툴과 개발의 경계를 허물어 아이디어를 빠른 속도로 시각화하고 프로토타입 제작 가능
+
+### 기존 개발 방식과 차이점
+
+- 전통적인 방식: 기획 → 와이어프레임/디자인(Figma 등) → 개발자 코딩(HTML, CSS, JS)
+- 생성형 AI 방식: 아이디어/프롬프트 → AI로 디자인 및 코드 생성 → 개발자 코딩(HTML, CSS, JS)
+
+### 주의사항
+
+1. 웹 페이지 구현의 시작부터 끝을 AI가 모두 할 수도 없고, 모두 맡겨서도 안된다.
+2. AI가 생성한 코드를 보고, 이해하고, 이를 기반으로 수정하는 과정이 꼭 필요하다.
+
+---
+
+## Google Stitch
+
+[**stitch.withgoogle.com**](https://stitch.withgoogle.com/)
+
+- Google에서 개발한 텍스트, 이미지, 스케치 기반 UI 생성형 AI 도구
+- 디자인 시안을 Figma로 내보낼 수 있어 디자이너와의 협업에 유용
+
+### 주요 특징
+
+- **멀티모달 입력**: 텍스트, 손그림, 와이어프레임, 스크린샷 등 다양한 형태로 아이디어 입력 가능
+- **Figma 연동**: 생성된 디자인을 Figma 파일로 내보내 디테일한 수정 가능
+- **HTML/CSS 코드 생성**: 생성된 디자인의 HTML/CSS 코드 제공
+
+### Stitch Prompt Guide
+
+[**Stitch Prompt Guide**](https://discuss.ai.google.dev/t/stitch-prompt-guide/83844)
+
+- 명확한 목표 설정 : 서비스의 목적과 핵심 기능을 먼저 정의
+- 형용사로 분위기 설정 : 활기찬(vibrant), 고무적인(encouraging), 미니멀리스트(minimalist) 와 같은 형용사로 서비스의 분위기 설정
+- UI/UX 키워드 사용: Navigation bar, CTA, Hero section과 같은 구체적인 키워드 사용
+- 한 번에 하나 씩(One Major Change at a Time)
+
+---
+
+## Vercel v0
+
+[**v0.dev**](https://v0.dev/)
+
+- Vercel에서 개발한 텍스트 기반 UI 생성형 AI 도구
+- **React, Tailwind CSS** 기반의 웹 컴포넌트 코드 생성
+
+### 주요 특징
+
+- **React + Tailwind CSS 기반**: 현업에서 널리 쓰이는 기술 스택으로 코드를 생성하여 프로젝트에 바로 적용 가능
+- **컴포넌트 기반 생성**: 페이지 전체가 아닌 개별 컴포넌트 생성에 특화
+
+---
+
+## Readdy AI
+
+[**readdy.ai**](https://readdy.ai/)
+
+- 텍스트, 이미지 기반 UI 생성형 AI 도구
+
+### 주요 특징
+
+- **반응형 웹 디자인**: 모바일과 데스크탑 두 화면에 대한 디자인 생성
+- **코드 및 Figma 생성**: 생성된 디자인의 HTML/CSS 코드 및 Figma 파일 제공 (유료 기능)
