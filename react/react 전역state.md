@@ -87,6 +87,10 @@ export default useCounterStore;
 
 - `set`은 전달한 값만 **부분 업데이트**한다 (나머지 상태는 그대로 유지)
 - 상태가 여러 개일 때 동작을 보면 명확하다
+- set()을 보면 그냥 객체만 전달하는 경우와 화살표 함수를 통해 전달하는 방식 2개가 있음.
+- 화살표 함수의 경우 축약형으로 작성되어 리턴 값만 보이는 것.
+    - ({ age: state.age + 1}) = { return {age: state.age + 1} } 이랑 같다.
+    - 즉 화살표 함수를 사용하면 그냥 값만 반환하는 것이 아니라 함수를 작성해서 더 복잡한 로직도 가능하다.
 
 ```jsx
 const useProfileStore = create((set) => ({
